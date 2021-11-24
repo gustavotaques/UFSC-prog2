@@ -1,26 +1,31 @@
 #include "strlib.h"
 #include <stdio.h>
+#include <string.h>
 
 
 int str_length (const char *str) {
     int cont = 0;
 
-    if (str == NULL) return -1;
+    if (str[0] == 0 || str[0] == 10) {
+        return -1;
+    }
     
     for (int i=0; i < *str; i++) {
-        if (str[i] != '\n' && str[i] != '\0') cont++;
+        if (str[i] != 10 && str[i] != 0) cont++;
         else break;
     }
     return cont;
 }
 
+
 char* str_duplicate (const char *str) {
+    if (str[0] == 10 || str[0] == 0) {
+        return NULL;
+    }
+
     char *aux;
-
-    if (str == NULL) return aux = NULL;
-    
-
     int text_length;
+
     text_length = str_length(str);
 
     aux = (char*) malloc(sizeof(int) * text_length);
@@ -31,26 +36,44 @@ char* str_duplicate (const char *str) {
     return aux;
 }
 
-int str_compare (const char *stra, const char *strb) {
 
+int str_compare (const char *stra, const char *strb) {
+    
+    while ((*stra != 0 && *stra != 10) && (*strb != 0 && *strb != 10)) {
+        if (*stra < *strb) return -1;
+        if (*stra > *strb) return 1;
+
+        stra++;
+        strb++;
+
+    }
+    return 0;
+}
+
+
+int str_reverse (char *str) {
+    if (str[0] == 0 || str[0] == 10) return 0;
+    
+    int n = str_length(str) - 1;
+    int i = 0;
+    char aux;
+
+    while (i < n) {
+        aux = str[i];
+        str[i] = str[n];
+        str[n] = aux;
+
+        i++;
+        n--;
+    }
+    return 1;
 }
 
 
 int main () {
     char c[200];
-    char c_aux[200];
-    //char *c_aux;
 
-    fgets(c, 200, stdin); 
-
-    //c_aux = str_duplicate(c); // <- Ex 2
-
-
-
-
-
-
-    //free(c_aux);
+    fgets(c, 200, stdin);
 
     return 0;
 }
