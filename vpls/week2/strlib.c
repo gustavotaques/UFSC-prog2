@@ -17,9 +17,8 @@ int str_length (const char *str) {
 char* str_duplicate (const char *str) {
     char *aux;
 
-    if (str == NULL) {
-        return NULL;
-    }
+    if (str == NULL) return aux = NULL;
+    
 
     int text_length;
     text_length = str_length(str);
@@ -32,17 +31,26 @@ char* str_duplicate (const char *str) {
     return aux;
 }
 
+int str_compare (const char *stra, const char *strb) {
+
+}
+
 
 int main () {
     char c[200];
-    char *c_aux;
+    char c_aux[200];
+    //char *c_aux;
 
     fgets(c, 200, stdin); 
 
-    //printf("%d\n", str_length(c));
+    //c_aux = str_duplicate(c); // <- Ex 2
 
-    c_aux = str_duplicate(c);
-    free(c_aux);
+
+
+
+
+
+    //free(c_aux);
 
     return 0;
 }
