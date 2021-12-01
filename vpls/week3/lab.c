@@ -35,8 +35,8 @@ double *le_valores(const char *arquivo, unsigned int *qtd_numeros) {
     double n;
 
     while (!feof(arq)) {
-        cont++;
         fscanf(arq, "%lf", &n);
+        cont++;
     }
     
     double *v = (double*) malloc(sizeof(double) * cont);
@@ -50,7 +50,7 @@ double *le_valores(const char *arquivo, unsigned int *qtd_numeros) {
         i++;
     }
 
-    *qtd_numeros = cont;
+    *qtd_numeros = cont-1;
 
     fecha_arquivo(arq);
 
