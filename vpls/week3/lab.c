@@ -35,7 +35,7 @@ double *le_valores(const char *arquivo, unsigned int *qtd_numeros) {
     double n;
 
     while (!feof(arq)) {
-        fscanf(arq, "%lf", &n);
+        fscanf(arq, "%lf ", &n);
         cont++;
     }
     
@@ -45,12 +45,12 @@ double *le_valores(const char *arquivo, unsigned int *qtd_numeros) {
     int i = 0;
 
     while (!feof(arq)) {
-        fscanf(arq, "%lf", &n);
+        fscanf(arq, "%lf ", &n);
         v[i] = n;
         i++;
     }
 
-    *qtd_numeros = cont-1;
+    *qtd_numeros = cont;
 
     fecha_arquivo(arq);
 
@@ -122,7 +122,7 @@ double amplitude(double* valores, unsigned int qtd_numeros) {
 
 double valor(double* valores, unsigned int qtd_numeros, unsigned int posicao) {
     if (!valores) return HUGE_VAL;
-    if (posicao > qtd_numeros) return HUGE_VAL;
+    if (posicao >= qtd_numeros) return HUGE_VAL;
 
     return valores[posicao];
 }
@@ -136,9 +136,9 @@ double repetido(double* valores, unsigned int qtd_numeros, unsigned int *qtd_rep
 
     int cont, cont_repeticao = 0, indice_maior_freq = 0;
 
-    for (int i = 0; i <= qtd_numeros; i++) {
+    for (int i = 0; i < qtd_numeros; i++) {
         cont = 0;
-        for (int j = i + 1; j <= qtd_numeros; j++) {
+        for (int j = i; j < qtd_numeros; j++) {
             if (valores[i] == valores[j]) {
                 cont++;
             }
@@ -157,12 +157,13 @@ double repetido(double* valores, unsigned int qtd_numeros, unsigned int *qtd_rep
 int main () {
     char name[] = "example.txt";
     unsigned int cont;
-    unsigned int pos = 19;
+    unsigned int pos;
 
     double *aux = le_valores(name, &cont);
     
-    printf("%d\n", cont);
-    // printf("%.2f\n", valor(aux, cont, pos));
+    printf("%.2f\n", repetido(aux, cont, &pos));
+
+    printf("%d\n", pos);
 
     return 0;
 }
