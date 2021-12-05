@@ -1,0 +1,27 @@
+Considere um arquivo de acesso sequencial (i.e., arquivo texto plano) que contenha dois numeros reais por linha.
+
+A tarefa desse laboratório virtual de programação é implementar funções para o processamento dos números contidos no arquivo. As seguintes funções são necessárias:
+
+
+- Encontrar o maior número.
+- Encontrar o menor número.
+- Calcular a média dos números.
+- Calcular o desvio-padrão dos números.
+- A amplitude dos números (diferença entre o maior e o menor número).
+- Encontrar o número que mais se repete e quantas vezes ele aparece (em caso de igualdade, o primeiro encontrado tem preferência)
+- Encontrar o número que está na n-esíma posição
+
+Além dessas funções, são necessárias também 3 funções auxiliares:
+
+
+- Uma função que retorna um array unidimensional contendo todos os valores lidos de um arquivo, bem como o número total de valores lidos.
+- Uma função que realiza a abertura de um arquivo.
+- Uma função que realiza o fechamento de um arquivo.
+- O arquivo "lab.h" contém a descrição e o protótipo de cada função que deverá ser implementada dentro do arquivo "lab.c".
+
+
+Esse laboratório envolve os tópicos:
+
+- Entrada e Saída: Arquivos
+- Alocação Dinâmica de Memória
+- Funções
