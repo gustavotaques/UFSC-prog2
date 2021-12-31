@@ -25,4 +25,24 @@ struct lista {
 	int 		tamanho;	//Tamanho atual da lista
 };
 
-// Coloque a partir daqui a implementação das funções
+lista_t* lista_cria () {
+	lista_t *lista;
+
+	lista = (lista_t*) malloc(sizeof(lista_t));
+
+	if (lista == NULL) return NULL;
+
+	lista->tamanho = 0;
+	lista->cabeca = NULL;
+	lista->cauda = NULL;
+
+	return lista;
+}
+
+void lista_destroi (lista_t **l) {
+	
+}
+
+int main () {
+	return 0;
+}
