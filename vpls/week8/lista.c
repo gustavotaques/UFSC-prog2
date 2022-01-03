@@ -40,7 +40,52 @@ lista_t* lista_cria () {
 }
 
 void lista_destroi (lista_t **l) {
-	
+	if (!l) return;
+	if (!(*l)) return;
+
+}
+
+int lista_inicializada (lista_t *l) {
+	return l != NULL;
+}
+
+int lista_tamanho (lista_t *l) {
+	if (l == NULL) return -1;
+
+	return l->tamanho;
+}
+
+int lista_info_cabeca (lista_t *l, int *dado) {
+	if (l == NULL) return -1;
+	if (dado == NULL) return -1;
+	if (l->tamanho == 0) return 0;
+
+	*dado = l->cabeca->info;
+
+	return 1;
+}
+
+int lista_info_cauda (lista_t *l, int *dado) {
+	if (l == NULL) return -1;
+	if (dado == NULL) return -1;
+	if (l->tamanho == 0) return 0;
+
+	*dado = l->cauda->info;
+
+	return 1;
+}
+
+int lista_info_posicao (lista_t *l, int *dado, int pos) {
+	if (l == NULL) return -1;
+	if (dado == NULL) return -1;
+	if (l->tamanho == 0) return 0;
+	if (pos < 0 || pos >= l->tamanho) return 0;
+
+	no_t *node;
+	*dado = l->cabeca->info;
+
+	int cont = 0;
+
 }
 
 int main () {
