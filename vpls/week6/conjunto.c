@@ -47,6 +47,8 @@ void conjunto_inicializa_vazio(conjunto_t *a) {
 int conjunto_insere_elemento(elem_t x, conjunto_t *a) {
     if (a == NULL) return 0;
 
+    if(conjunto_membro(x, a) == 1) return 1;
+
     if (a->numero == a->capacidade){
         a->vetor = (elem_t*) realloc(a->vetor, sizeof(elem_t) * a->capacidade * 2);
         if (a->vetor == NULL) return 0;
@@ -64,13 +66,13 @@ void conjunto_uniao(conjunto_t *a, conjunto_t *b, conjunto_t *c) {
     conjunto_inicializa_vazio(c);
 
     for (int i=0; i<a->numero; i++) {
-        if (!(conjunto_membro(a->vetor[i], c))) {
+        if ((conjunto_membro(a->vetor[i], c)) == 0) {
             conjunto_insere_elemento(a->vetor[i], c);
         }
     }
 
     for (int i=0; i<b->numero; i++) {
-        if (!(conjunto_membro(b->vetor[i], c))) {
+        if ((conjunto_membro(b->vetor[i], c)) == 0) {
             conjunto_insere_elemento(b->vetor[i], c);
         }
     }
@@ -82,7 +84,7 @@ void conjunto_interseccao(conjunto_t *a, conjunto_t *b, conjunto_t *c) {
     conjunto_inicializa_vazio(c);
 
     for (int i=0; i<a->numero; i++) {
-        if (conjunto_membro(a->vetor[i], b)) {
+        if (conjunto_membro(a->vetor[i], b) == 1) {
             conjunto_insere_elemento(a->vetor[i], c);
         }
     }
@@ -94,15 +96,10 @@ void conjunto_diferenca(conjunto_t *a, conjunto_t *b, conjunto_t *c) {
     conjunto_inicializa_vazio(c);
 
     for (int i=0; i<a->numero; i++) {
-        if (!(conjunto_membro(a->vetor[i], b))) {
+        if ((conjunto_membro(a->vetor[i], b)) == 0) {
             conjunto_insere_elemento(a->vetor[i], c);
         }
     }
-    // for (int i=0; i<b->numero; i++) {
-    //     if (!(conjunto_membro(b->vetor[i], a))) {
-    //         conjunto_insere_elemento(b->vetor[i], c);
-    //     }
-    // }
 }
 
 int conjunto_membro(elem_t x, conjunto_t *a) {
@@ -134,6 +131,9 @@ void conjunto_atribui(conjunto_t *a, conjunto_t *b) {
 
     conjunto_inicializa_vazio(b);
 
+    b->capacidade = a->capacidade;
+    b->numero = a->numero;
+
     for (int i=0; i<a->numero; i++) {
         conjunto_insere_elemento(a->vetor[i], b);
     }
@@ -142,12 +142,11 @@ void conjunto_atribui(conjunto_t *a, conjunto_t *b) {
 int conjunto_igual(conjunto_t *a, conjunto_t *b) {
     if (a == NULL || b == NULL) return 0;
     if (a->numero != b->numero) return 0;
-    if (a->capacidade != b->capacidade) return 0;
-
 
     for (int i=0; i<a->numero; i++) {
-        if (!(conjunto_membro(a->vetor[i], b))) return 0;
+        if ((conjunto_membro(a->vetor[i], b)) == 0) return 0;
     }
+    
     return 1;
 }
 
