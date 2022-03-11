@@ -80,6 +80,7 @@ int abb_remove (abb_t *arv, elem_t chave) {
             atual = atual->dir;
         }
     }
+    return 0;
 }
 
 void abb_destroi (abb_t **arv) {

@@ -9,6 +9,9 @@
 				"-fdiagnostics-color=always",
 				"-g",
 				"${file}",
+				"-Wall",
+				"-Wextra",
+				"-std=c99",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
 				"-lm"
